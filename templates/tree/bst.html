@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Binary Search Tree Visualizer</title>
+  <link rel="stylesheet" href="/static/css/tree/bst.css">
+</head>
+<body>
+<div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Binary Search Tree Visualizer</h1>
+</div>
+
+<div class="controls">
+  <input type="number" id="value" placeholder="Enter value">
+  <button onclick="insertNode()">Insert</button>
+  <button onclick="searchNode()">Search</button>
+  <button onclick="deleteNode()">Delete</button>
+  <button onclick="resetTree()">Reset</button>
+
+
+  <span class="speed-control">
+    Speed:
+    <input type="range" id="speed" min="200" max="1500" value="700">
+  </span>
+</div>
+
+
+<canvas id="bstCanvas" height="500"></canvas>
+
+<div class="explain-box explain" id="explain">
+  Step-by-step explanation will appear here.
+</div>
+
+<script src="/static/js/tree/bst.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Minimum Spanning Tree</title>
+  <style>
+    body { 
+      background:#0d1117; 
+      color:white; 
+      font-family:'Segoe UI',sans-serif; 
+      margin:0; 
+    }
+    .top-buttons { 
+      position:absolute; 
+      top:10px; 
+      right:20px; 
+      display:flex; 
+      gap:10px; 
+    }
+    button { 
+      padding:8px 16px; 
+      border-radius:10px; 
+      border:none; 
+      font-weight:bold; 
+      cursor:pointer; 
+      color:white; 
+    }
+    #home { 
+      background:#ff5050; 
+    } 
+    #visualize { 
+      background:#00bfff; 
+    }
+    #home:hover {
+        background-color: #ff1a1a;
+    } 
+    #visualize:hover {
+        background-color: #009acd;
+    }
+
+    .container { 
+      max-width:900px; 
+      margin:auto; 
+      padding:40px 20px; 
+    }
+    h1 { 
+      color: #00ffff;
+        font-size: 2.5rem;
+        text-align: center;
+        text-shadow: 0 0 8px #00ffff;
+        margin-bottom: 30px
+    }
+    .subtitle { 
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px; 
+    }
+    h2 { 
+      color:#00ffff; 
+      font-size: 1.5rem;
+      margin-top:40px; 
+      padding-bottom: 5px;
+    }
+    p { 
+      font-size:1.1rem; 
+      margin: 15px 0;
+      text-align:justify;
+    }
+    ul { 
+      padding-left:25px; 
+      margin: 15px 0;
+    }
+    li {
+      margin: 8px 0;
+    }
+    img { 
+      display:block; 
+      margin:20px auto; 
+      max-width:60%; 
+      border:2px solid #00ffff; 
+      border-radius:10px; 
+    }
+    .pseudocode {
+      background:#1a1a1a; 
+      border-left:4px solid #00ffff; 
+      padding:15px;
+      margin:20px 0; 
+      font-family: 'Courier New', monospace; 
+      color:lightblue; 
+      white-space: pre-wrap;
+      border-radius:8px;
+    }
+    .comparison-box {
+      margin: 40px auto;
+      max-width: 1000px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+    .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+}
+  .comparison-box th,td {
+    border: 1px solid #00ffff;
+    padding: 16px 24px;
+    text-align: center;
+    min-width: 120px;
+}
+
+.comparison-box th {
+    background-color: #0d1117;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+  </style>
+</head>
+
+<body>
+<div class="top-buttons">
+  <button id="home" onclick="goHome()">Home</button>
+  <button id="visualize" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Minimum Spanning Tree</h1>
+  <p class="subtitle">Connecting all vertices with minimum cost</p>
+
+  <h2>Introduction</h2>
+  <p>Before we learn about spanning trees, we need to understand two graphs: undirected graphs and connected graphs.</p>
+  <p>An undirected graph is a graph in which the edges do not point in any direction (ie. the edges are bidirectional).</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/undirected-graph.png" alt="Undirected Graph Example" />
+  <p style="text-align: center;">Undirected Graph</p>
+  <p>A connected graph is a graph in which there is always a path from a vertex to any other vertex.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/connected-graph.png" alt="Connected Graph Example" />
+  <p style="text-align: center;">Connected Graph</p>
+
+  <h2>Spanning tree</h2>
+  <p>A spanning tree is a sub-graph of an undirected connected graph, which includes all the vertices of the graph with a minimum possible number of edges. If a vertex is missed, then it is not a spanning tree.</p>
+  <p>The edges may or may not have weights assigned to them.</p>
+  <p>The total number of spanning trees with n vertices that can be created from a complete graph is equal to n(n-2).</p>
+
+  <p><strong>Example of a Spanning Tree</strong></p>
+  <p>Let's understand the spanning tree with examples below:</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/initial-tree_0.png" alt="Spanning Tree Example" />
+  <p style="text-align: center;">Normal graph</p>
+  <p>Some of the possible spanning trees that can be created from the above graph are:</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-1_0.png" alt="Spanning Tree Example 1" />
+  <p style="text-align: center;">Spanning Tree 1</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-2_0.png" alt="Spanning Tree Example 2" />
+  <p style="text-align: center;">Spanning Tree 2</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-3_0.png" alt="Spanning Tree Example 3" />
+  <p style="text-align: center;">Spanning Tree 3</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-4_0.png" alt="Spanning Tree Example 4" />
+  <p style="text-align: center;">Spanning Tree 4</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-5_0.png" alt="Spanning Tree Example 5" />
+  <p style="text-align: center;">Spanning Tree 5</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/spanning-tree-6_0.png" alt="Spanning Tree Example 6" />
+  <p style="text-align: center;">Spanning Tree 6</p>
+
+  <h2>Minimum Spanning Tree</h2>
+  <p>A minimum spanning tree is a spanning tree in which the sum of the weight of the edges is as minimum as possible.</p>
+  <p><strong>Example of a Spanning Tree</strong></p>
+  <p>Let's understand the above definition with the help of the example below.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/initial-tree-mst_0_1.png" alt="Minimum Spanning Tree Example" />
+  <p style="text-align: center;">Weighted graph</p>
+  <p>The possible spanning trees from the above graph are:</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/mst-1_0_1.png" alt="Minimum Spanning Tree Example 1" />
+  <p style="text-align: center;">Minimum spanning tree - 1</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/mst-3_0_1.png" alt="Minimum Spanning Tree Example 2" />
+  <p style="text-align: center;">Minimum spanning tree - 2</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/mst-4_0_1.png" alt="Minimum Spanning Tree Example 3" />
+  <p style="text-align: center;">Minimum spanning tree - 3</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/mst_0_1.png" alt="Minimum Spanning Tree Example 4" />
+  <p style="text-align: center;">Minimum spanning tree - 4</p>
+  <p>The minimum spanning tree from the above spanning trees is:</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/mst_1_1.png" alt="Final Minimum Spanning Tree" />
+  <p style="text-align: center;">Minimum Spanning Tree</p>
+
+  <h2>Spanning Tree Applications</h2>
+  <ul>
+    <li>Computer Network Routing Protocol</li>
+    <li>Cluster Analysis</li>
+    <li>Civil Network Planning</li>
+  </ul>
+  <h2>Minimum Spanning tree Applications</h2>
+  <ul>
+    <li>To find paths in the map</li>
+    <li>To design networks like telecommunication networks, water supply networks, and electrical grids.</li>
+  </ul>
+
+  <!----------------------------------------------------------Krushkal Algorithm-------------------------->
+  <h3>Kruskal’s Algorithm</h3>
+  <p>Kruskal's algorithm is a minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which</p>
+  <ul>
+    <li>form a tree that includes every vertex</li>
+    <li>has the minimum sum of weights among all the trees that can be formed from the graph</li>
+  </ul>
+
+  <p>The steps for implementing Kruskal's algorithm are as follows:</p>
+  <ol>
+    <li>Sort all the edges from low weight to high</li>
+    <li>Take the edge with the lowest weight and add it to the spanning tree. If adding the edge created a cycle, then reject this edge.</li>
+    <li>Keep adding edges until we reach all vertices.</li>
+  </ol>
+  <p><strong>Example of Kruskal's algorithm</strong></p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-1.png" alt="Kruskal's Algorithm Example 1" />
+  <p style="text-align: center;">Start with a weighted graph</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-2.png" alt="Kruskal's Algorithm Example 2" />
+  <p style="text-align: center;">Choose the edge with the least weight, if there are more than 1, choose anyone</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-3.png" alt="Kruskal's Algorithm Example 3" />
+  <p style="text-align: center;">Choose the next shortest edge and add it</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-4.png" alt="Kruskal's Algorithm Example 4" />
+  <p style="text-align: center;">Choose the next shortest edge that doesn't create a cycle and add it</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-5.png" alt="Kruskal's Algorithm Example 5" />
+  <p style="text-align: center;">Choose the next shortest edge that doesn't create a cycle and add it</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/ka-6.png" alt="Kruskal's Algorithm Example 6" />
+  <p style="text-align: center;">Repeat until you have a spanning tree</p>
+
+  <div class="pseudocode">
+    KRUSKAL(G):
+    A = ∅
+    For each vertex v ∈ G.V:
+        MAKE-SET(v)
+    For each edge (u, v) ∈ G.E ordered by increasing order by weight(u, v):
+        if FIND-SET(u) ≠ FIND-SET(v):       
+        A = A ∪ {(u, v)}
+        UNION(u, v)
+    return A
+  </div>
+<br>
+<!----------------------------------------------------------Prim's Algorithm----------------------------->
+
+  <h3>Prim’s Algorithm</h3>
+  <p>Prim's algorithm is a minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which</p>
+  <ul>
+    <li>form a tree that includes every vertex</li>
+    <li>has the minimum sum of weights among all the trees that can be formed from the graph</li>
+  </ul>
+
+  <p>The steps for implementing Prim's algorithm are as follows:</p>
+  <ol>
+    <li>Initialize the minimum spanning tree with a vertex chosen at random.</li>
+    <li>Find all the edges that connect the tree to new vertices, find the minimum and add it to the tree</li>
+    <li>Keep repeating step 2 until we get a minimum spanning tree</li>
+  </ol>
+  <p><strong>Example of Prim's algorithm</strong></p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/prims_minimum_spanning_tree.jpg" alt="Prim's Algorithm Example 1" />
+  <p>Create a visited array to store all the visited vertices into it.</p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/s_to_b.jpg" alt="Prim's Algorithm Example 2" />
+  <p>Since B is the last visited, check for the least cost edge that is connected to the vertex B.</p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/b_to_a.jpg" alt="Prim's Algorithm Example 3" />
+  <p>Since A is the last visited, check for the least cost edge that is connected to the vertex A.</p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/a_to_e.jpg" alt="Prim's Algorithm Example 4" />
+  <p>Since E is the last visited, check for the least cost edge that is connected to the vertex E.</p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/e_to_d.jpg" alt="Prim's Algorithm Example 5" />
+  <p>Since D is the last visited, check for the least cost edge that is connected to the vertex D.</p>
+  <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/d_to_c.jpg" alt="Prim's Algorithm Example 6" />
+  
+  <div class="pseudocode">
+    PRIM(G, w, r):
+    for each u ∈ G.V:
+        key[u] = ∞
+        parent[u] = NIL
+    key[r] = 0
+    Q = G.V
+    while Q ≠ ∅:
+        u = EXTRACT-MIN(Q)
+        for each v ∈ G.Adj[u]:
+            if v ∈ Q and w(u, v) < key[v]:
+                parent[v] = u
+                key[v] = w(u, v)
+  </div>
+
+  <h2>Complexity Comparison</h2>
+
+<div class="comparison-box">
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Time</th>
+        <th>Space</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kruskal's Algorithm</td>
+        <td>O(ElogE)</td>
+        <td>O(V)</td>
+        
+      </tr>
+      <tr>
+        <td>Prim's Algorithm </td>
+        <td>O(V^2)</td>
+        <td>O(V)</td>
+        
+        
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+  <p style="text-align:center;color:#aaa;">End Document</p>
+</div>
+
+<script>
+function goHome(){ window.location.href="/"; }
+function goVisualize(){ window.location.href="/graph/mst" }
+</script>
+</body>
+</html>

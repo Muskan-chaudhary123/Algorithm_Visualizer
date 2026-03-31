@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Linked List Visualizer</title>
+<link rel="stylesheet" href="/static/css/array/linked.css">
+</head>
+
+<body>
+
+<div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Linked List Visualizer</h1>
+</div>
+  
+
+
+<div class="controls">
+  <input type="number" id="value" placeholder="Value">
+  <input type="number" id="position" placeholder="Position">
+  <br>
+  <br>
+  <button onclick="insertAtBeginning()">Insert Begin</button>
+  <button onclick="insertAtPosition()">Insert Position</button>
+  <button onclick="insertAtEnd()">Insert End</button>
+  
+  <button onclick="deleteFromBeginning()">Delete Begin</button>
+  <button onclick="deleteFromPosition()">Delete Position</button>
+  <button onclick="deleteFromEnd()">Delete End</button>
+  <button onclick="reverseList()">Reverse</button>
+</div>
+<div class="list-box">
+  
+  <div id="linkedlist-container"></div>
+</div>
+
+<div id="explain" class="explain-box">
+  
+  <p id="explain-text">All operations will be explained here.</p>
+</div>
+
+
+<script src="/static/js/array/linked.js"></script>
+</body>
+</html>

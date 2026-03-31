@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Searching Algorithms</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+#home-button, #read-button {
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#home-button { background-color: #ff5050; }
+#read-button { background-color: #00bfff; }
+
+#home-button:hover { background-color: #ff1a1a; }
+#read-button:hover { background-color: #009acd; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-size: 1.5rem;
+      margin-top: 40px;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 15px 0;
+      text-align: justify;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .pseudocode {
+      background-color: #1a1a1a;
+      border-left: 4px solid #00ffff;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      color: lightblue;
+      white-space: pre-wrap;
+      border-radius: 8px;
+    }
+
+    .comparison-box {
+      margin: 40px auto;
+      max-width: 800px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .comparison-box th,
+    .comparison-box td {
+      border: 1px solid #00ffff;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .comparison-box th {
+      background-color: #0d1117;
+      color: #00ffff;
+      font-weight: bold;
+    }
+
+    .comparison-box tr:nth-child(even) {
+      background-color: #2c2f33;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+    <div class="top-buttons">
+  <button id="home-button" onclick="goHome()">Home</button>
+  <button id="read-button" onclick="goVisualize()">Visulaize</button>
+</div>
+
+  <div class="container">
+    <h1>Searching Algorithms</h1>
+    <p class="subtitle">Understand how data is found efficiently in sorted and unsorted structures.</p>
+
+    <h2>Introduction</h2>
+    <p>Searching is a process of finding a particular record, which can be a single element or a small chunk, within a huge amount of data. The data can be in various forms: arrays, linked lists, trees, heaps, and graphs etc. With the increasing amount of data nowadays, there are multiple techniques to perform the searching operation.</p>
+
+    <h2>Searching Algorithms in Data Structures</h2>
+    <p>Various searching techniques can be applied on the data structures to retrieve certain data. A search operation is said to be successful only if it returns the desired element or data; otherwise, the searching method is unsuccessful.
+There are two categories these searching techniques fall into. They are −</p>
+    <ol>
+        <li>Sequential Searching</li>
+        <li>Interval Searching</li>
+    </ol>
+    <h2>Sequential Searching</h2>
+    <p>As the name suggests, the sequential searching operation traverses through each element of the data sequentially to look for the desired data. The data need not be in a sorted manner for this type of search. Example − Linear Search</p>
+    <h2>Interval Searching</h2>
+    <p>Unlike sequential searching, the interval searching operation requires the data to be in a sorted manner. This method usually searches the data in intervals; it could be done by either dividing the data into multiple sub-parts or jumping through the indices to search for an element. Example − Binary Search, Jump Search etc.</p>
+    <h2>Linear Search</h2>
+    <p>Linear search is a type of sequential searching algorithm. In this method, every element within the input array is traversed and compared with the key element to be found. If a match is found in the array the search is said to be successful; if there is no match found the search is said to be unsuccessful and gives the worst-case time complexity.For instance, in the given animated diagram, we are searching for an element 33. Therefore, the linear search method searches for it sequentially from the very first element until it finds a match. This returns a successful search.</p>
+    <ol>
+      <li>Start from the first element.</li>
+      <li>Compare each element with the target.</li>
+      <li>If a match is found, return the index.</li>
+      <li>If not, continue to the next element.</li>
+    </ol>
+        <img src="https://cdn.programiz.com/sites/tutorial2program/files/linear-search-initial-array.png" alt="Linear Search" />
+        <img src="https://cdn.programiz.com/sites/tutorial2program/files/linear-search-comparisons.png" alt="Linear Search" />
+        <img src="https://cdn.programiz.com/sites/tutorial2program/files/linear-search-found.png" alt="Linear Search" />
+
+    <h3>Linear Search – Pseudocode</h3>
+    <div class="pseudocode">
+for i from 0 to n - 1
+    if arr[i] == target
+        return i
+return -1
+    </div>
+
+    <h2>Binary Search</h2>
+    <p>Binary search is a fast search algorithm with run-time complexity of (log n). This search algorithm works on the principle of divide and conquer, since it divides the array into half before searching. For this algorithm to work properly, the data collection should be in the sorted form.Binary search looks for a particular key value by comparing the middle most item of the collection. If a match occurs, then the index of item is returned. But if the middle item has a value greater than the key value, the right sub-array of the middle item is searched. Otherwise, the left sub-array is searched. This process continues recursively until the size of a subarray reduces to zero.</p>
+    <ol>
+      <li>Start with the entire array.</li>
+      <li>Check the middle element.</li>
+      <li>If equal to target, return index.</li>
+      <li>If target is smaller, search the left half.</li>
+      <li>If target is greater, search the right half.</li>
+    </ol>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-initial-array.png" alt="Binary Search" />
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-set-pointers.png" alt="Binary Search" />
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-mid.png" alt="Binary Search" />
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-find-mid.png" alt="Binary Search" />
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-mid-again.png" alt="Binary Search" />
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/binary-search-found.png" alt="Binary Search" />
+
+    <h3>Binary Search – Pseudocode</h3>
+    <div class="pseudocode">
+low = 0
+high = n - 1
+while low ≤ high
+    mid = (low + high) / 2
+    if arr[mid] == target
+        return mid
+    else if arr[mid] < target
+        low = mid + 1
+    else
+        high = mid - 1
+return -1
+    </div>
+
+    <h2 style="margin-top: 50px; color: #00ffff;">Searching Algorithm Complexity Comparison</h2>
+    <div class="comparison-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Algorithm</th>
+            <th>Best Case</th>
+            <th>Average Case</th>
+            <th>Worst Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Linear Search</td>
+            <td>O(1)</td>
+            <td>O(n)</td>
+            <td>O(n)</td>
+          </tr>
+          <tr>
+            <td>Binary Search</td>
+            <td>O(1)</td>
+            <td>O(log n)</td>
+            <td>O(log n)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="text-align:center; margin-top: 50px; color: #aaa;">End of Document</p>
+  </div>
+  <script>
+    function goHome() {
+      window.location.href = "/";
+    }
+
+    function goVisualize() {
+      window.location.href = "/searching"; 
+}
+  </script>
+</body>
+</html>

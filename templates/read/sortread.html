@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Sorting Algorithms</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      
+    
+    }
+
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+  
+}
+
+#home-button, #read-button {
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#home-button { background-color: #ff5050; }
+#read-button { background-color: #00bfff; }
+
+#home-button:hover { background-color: #ff1a1a; }
+#read-button:hover { background-color: #009acd; }
+
+comparison-box {
+  margin: 40px auto;
+  max-width: 1000px;
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  overflow-x: auto;
+  background-color: #1c1c1e;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.comparison-box table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  color: #ffffff;
+  font-size: 17px;
+}
+.comparison-box th,
+.comparison-box td {
+  border: 1px solid #00ffff;
+  padding: 16px 24px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.comparison-box th {
+  background-color: #0d1117;
+  color: #00ffff;
+  font-weight: bold;
+}
+
+.comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+
+
+
+    .pseudocode {
+  background-color: #1a1a1a;
+  border-left: 4px solid #00ffff;
+  padding: 15px;
+  margin: 20px;
+  font-family: 'Courier New', monospace;
+  color: lightblue;
+  white-space: pre-wrap;
+  border-radius: 8px;
+}
+
+
+    @keyframes moveBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-size: 1.5rem;
+      margin-top: 40px;
+      
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 15px 0;
+      text-align: justify;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+    
+
+
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 50%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    .highlight {
+      color: #00ffff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons">
+  <button id="home-button" onclick="goHome()">Home</button>
+  <button id="read-button" onclick="goVisualize()">Visualize</button>
+</div>
+
+
+  <div class="container">
+    <h1>Sorting Algorithms</h1>
+    <p class="subtitle">Everything you need to know about sorting for interview prep and beyond.</p>
+
+    <h2>Introduction</h2>
+    <p>Sorting refers to rearranging elements in a particular order based on a comparison operator. It’s crucial in solving complex problems efficiently.</p>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/sorting.png" alt="Sorting Concept"/>
+
+    <h2>Why Sorting Algorithms Are Important</h2>
+    <ul>
+      <li>Efficient data printing and report generation.</li>
+      <li>Helps access the k-th smallest or largest element in O(1) time.</li>
+      <li>Enables binary search, improving search efficiency.</li>
+      <li>Foundation for advanced algorithms and real-world software applications.</li>
+    </ul>
+
+    <h2>Types of Sorting Algorithms</h2>
+    <ul>
+      <li>Bubble Sort</li>
+      <li>Selection Sort</li>
+      <li>Insertion Sort</li>
+      <li>Merge Sort</li>
+      <li>Quick Sort</li>
+    </ul>
+
+    <h2>Bubble Sort</h2>
+    <p>Bubble sort is a simple sorting algorithm. This sorting algorithm is comparison-based algorithm in which each pair of adjacent elements is compared and the elements are swapped if they are not in order. This algorithm is not suitable for large data sets as its average and worst case complexity are of O(n2) where n is the number of items.</p>
+    <p>Steps of Bubble Sort : </p>
+    <ol>
+      <li>Compare adjacent elements.</li>
+      <li>Swap if necessary.</li>
+      <li>Repeat until no swaps are needed.</li>
+    </ol>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/Bubble-sort-0.png" alt="Bubble Sort Example"/>
+    <h3>Bubble Sort – Pseudocode</h3>
+<div class="pseudocode">
+for i from 0 to n - 1
+    for j from 0 to n - i - 1
+        if arr[j] > arr[j + 1]
+            swap arr[j] and arr[j + 1]
+</div>
+
+
+    <h2>Selection Sort</h2>
+    <p>Selection sort is a simple sorting algorithm. This sorting algorithm, like insertion sort, is an in-place comparison-based algorithm in which the list is divided into two parts, the sorted part at the left end and the unsorted part at the right end. Initially, the sorted part is empty and the unsorted part is the entire list.
+        The smallest element is selected from the unsorted array and swapped with the leftmost element, and that element becomes a part of the sorted array. This process continues moving unsorted array boundaries by one element to the right.
+        This algorithm is not suitable for large data sets as its average and worst case complexities are of O(n2), where n is the number of items.
+    </p>
+    <p>Steps of Selection Sort : </p>
+    <ol>
+      <li>Create an empty sorted array.</li>
+      <li>Iterate over unsorted array to find minimum.</li>
+      <li>Move the minimum to the sorted array.</li>
+      <li>Repeat until all sorted.</li>
+    </ol>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/Selection-sort-0.png" alt="Selection Sort Example"/>
+    <h3>Selection Sort – Pseudocode</h3>
+<div class="pseudocode">
+for i from 0 to n - 1
+    minIndex = i
+    for j from i + 1 to n
+        if arr[j] < arr[minIndex]
+            minIndex = j
+    swap arr[i] and arr[minIndex]
+</div>
+
+    <h2>Insertion Sort</h2>
+    <p>nsertion sort is a very simple method to sort numbers in an ascending or descending order. This method follows the incremental method. It can be compared with the technique how cards are sorted at the time of playing a game.
+        This is an in-place comparison-based sorting algorithm. Here, a sub-list is maintained which is always sorted. For example, the lower part of an array is maintained to be sorted. An element which is to be 'inserted' in this sorted sub-list, has to find its appropriate place and then it has to be inserted there. Hence the name, insertion sort.
+        The array is searched sequentially and unsorted items are moved and inserted into the sorted sub-list (in the same array). This algorithm is not suitable for large data sets as its average and worst case complexity are of (n2), where n is the number of items.</p>
+    <p>Steps of Insertion Sort : </p>
+        <ol>
+        <li>Iterate through the array assuming the left part is sorted.</li>
+        <li>Compare current element with the ones on the left.</li>
+        <li>Shift elements to make space for the current value.</li>
+        <li>Insert it into the correct position in the sorted part.</li>
+    </ol>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px;">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Frame%204_0.png" alt="Insertion Step 1" width="200">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Insertion-sort-0_1.png" alt="Insertion Step 2" width="200">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Insertion-sort-1_1.png" alt="Insertion Step 3" width="200">
+        <img src="https://www.programiz.com/sites/tutorial2program/files/Insertion-sort-2_2.png" alt="Insertion Step 4" width="200">
+    </div>
+
+    <h3>Insertion Sort – Pseudocode</h3>
+<div class="pseudocode">
+for i from 1 to n - 1
+    key = arr[i]
+    j = i - 1
+    while j >= 0 and arr[j] > key
+        arr[j + 1] = arr[j]
+        j = j - 1
+    arr[j + 1] = key
+</div>
+
+    <h2>Quick Sort</h2>
+    <p>Quick sort is a highly efficient sorting algorithm and is based on partitioning of array of data into smaller arrays. A large array is partitioned into two arrays one of which holds values smaller than the specified value, say pivot, based on which the partition is made and another array holds values greater than the pivot value.
+        Quicksort partitions an array and then calls itself recursively twice to sort the two resulting subarrays. This algorithm is quite efficient for large-sized data sets as its average and worst-case complexity are O(n2), respectively.</p>
+    <p>Steps of Quick Sort:</p>
+    <ol>
+      <li>Choose a Pivot:Select an element from the array as the pivot. Different strategies exist for pivot selection, such as choosing the first, last, a random element, or the median of a few elements. </li>
+      <li>Partitioning:Rearrange the array so that elements less than or equal to the pivot are on the left, and elements greater than the pivot are on the right. This effectively places the pivot in its final sorted position within the array. </li>
+      <li>Recursive Sorting:Recursively apply steps 1 and 2 to the subarrays on both sides of the pivot. This process continues until each subarray contains only one element (which is inherently sorted). </li>
+      <li>Combine:The sorted subarrays are automatically combined as the recursive calls return, resulting in a fully sorted array. </li>
+    </ol>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png" alt="Quick Sort Visual"/>
+<h3>Quick Sort – Pseudocode</h3>
+<div class="pseudocode">
+function quickSort(arr, low, high)
+    if low < high
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi - 1)
+        quickSort(arr, pi + 1, high)
+
+function partition(arr, low, high)
+    pivot = arr[high]
+    i = low - 1
+    for j from low to high - 1
+        if arr[j] < pivot
+            i = i + 1
+            swap arr[i] and arr[j]
+    swap arr[i + 1] and arr[high]
+    return i + 1
+</div>
+
+
+    <h2>Merge Sort</h2>
+    <p>Merge sort is a sorting technique based on divide and conquer technique. With worst-case time complexity being (n log n), it is one of the most used and approached algorithms.
+        Merge sort first divides the array into equal halves and then combines them in a sorted manner.</p>
+    <p>Steps of Merge Sort: </p>
+    <ol>
+      <li>Divide: The unsorted array is divided into two halves. This division is repeated recursively until each subarray contains only one element (which is considered sorted). </li>
+      <li>Conquer: Each subarray, now containing a single element, is considered sorted. </li>
+      <li>Combine (Merge): The sorted subarrays are merged back together in a sorted manner. This merging process compares elements from the two subarrays and places them in the correct order into a new merged array. This merging continues until all the subarrays are merged back into a single sorted array. </li>
+      <br>
+</ol>
+    <img src="https://miro.medium.com/v2/resize:fit:1200/1*2Xl0wf6WZnVfinVPUn81bw.png" alt="Merge Sort"/>
+<h3>Merge Sort – Pseudocode</h3>
+<div class="pseudocode">
+function mergeSort(arr)
+    if length of arr > 1
+        mid = length / 2
+        left = arr[0..mid]
+        right = arr[mid..n]
+        mergeSort(left)
+        mergeSort(right)
+        merge(left, right, arr)
+</div>
+
+<h2> Sorting Algorithm Complexity Comparison</h2>
+
+<div class="comparison-box">
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Best Case</th>
+        <th>Average Case</th>
+        <th>Worst Case</th>
+        <th>Space</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bubble Sort</td>
+        <td>O(n)</td>
+        <td>O(n²)</td>
+        <td>O(n²)</td>
+        <td>O(1)</td>
+      </tr>
+      <tr>
+        <td>Selection Sort</td>
+        <td>O(n²)</td>
+        <td>O(n²)</td>
+        <td>O(n²)</td>
+        <td>O(1)</td>
+      </tr>
+      <tr>
+        <td>Insertion Sort</td>
+        <td>O(n)</td>
+        <td>O(n²)</td>
+        <td>O(n²)</td>
+        <td>O(1)</td>
+      </tr>
+      <tr>
+        <td>Merge Sort</td>
+        <td>O(n log n)</td>
+        <td>O(n log n)</td>
+        <td>O(n log n)</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Quick Sort</td>
+        <td>O(n log n)</td>
+        <td>O(n log n)</td>
+        <td>O(n²)</td>
+        <td>O(log n)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <p style="text-align:center; margin-top: 50px; color: #aaa;">End of Document</p>
+  </div>
+  <script>
+    function goHome() {
+      window.location.href = "/";
+    }
+    function goVisualize() {
+      window.location.href = "/sorting"; 
+}
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Graph MST Visualizer</title>
+  <link rel="stylesheet" href="/static/css/graph/mst.css">
+</head>
+
+<body>
+
+<div>
+    <button onclick="goHome()" id="home_button">
+      <img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+    </button>
+  <div class="top-buttons">
+    <button id="read-button" onclick="goRead()">Read</button>
+  </div>
+</div>
+
+<div class="header-container">
+  <h1 class="main-title">Minimum Spanning Tree Visualizer</h1>
+</div>
+
+<div id="graph-controls">
+  
+  <select id="algorithm">
+    <option value="" disabled selected hidden>Select Algorithm</option>
+    <option value="prim">Prim</option>
+    <option value="kruskal">Kruskal</option>
+  </select>
+
+  <button onclick="startStepMode()" id="graph_button">Start</button>
+  <button onclick="nextStep()" id="graph_button">Next Step </button>
+  <button onclick="resetGraph()" id="graph_button">Reset</button>
+
+</div>
+
+<div class="canvas-container">
+  <canvas id="graph-canvas" width="900" height="600"></canvas>
+</div>
+
+<div class="result-box">
+  <p id="mst-cost">Total MST Cost: 0</p>
+</div>
+
+<script src="/static/js/graph/graphmst.js"></script>
+</body>
+</html>

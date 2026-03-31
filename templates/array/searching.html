@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Searching Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/array/searching.css">
+</head>
+<body>
+  <div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Searching Visualizer</h1>
+</div>
+  
+
+  <div id="controls">
+    <select id="search-algo" onchange="updateSearchInfo(this.value)">
+      <option value="" disabled selected hidden>Select Algorithm</option>
+      <option value="linear">Linear Search</option>
+      <option value="binary">Binary Search</option>
+    </select>
+
+    <input type="text" id="user-array" placeholder="Enter array (e.g. 10,20,30)">
+    <input type="text" id="search-value" placeholder="Target number">
+
+    <button onclick="useUserArray()">Visualize</button>
+    <button id="start-search-button" onclick="startSearch()" disabled>Start Search</button>
+    <button class="reset-btn" onclick="resetVisualizer()">Reset</button>
+  </div>
+<br>
+  <div id="search-info"></div>
+  <div id="comparison-count"></div>
+  <div id="array-container"></div>
+
+  <script src="/static/js/array/searching.js"></script>
+</body>
+</html>

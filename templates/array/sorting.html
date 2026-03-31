@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorting Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/array/sortig.css">
+</head>
+<body>
+  <div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Sorting Visualizer</h1>
+</div>
+  
+
+  <div id="controls">
+    <select id="sort-algo" onchange="updateInfo(this.value)">
+      <option value="" disabled selected hidden>Select Algorithm</option>
+      <option value="bubble">Bubble Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="merge">Merge Sort</option>
+      <option value="quick">Quick Sort</option>
+    </select>
+
+    <input type="text" id="custom-array" placeholder="Enter array (e.g., 5,10,3,8)">
+    <button onclick="useUserArray()">Visualize</button>
+    <button id="start-button" onclick="startSorting()" disabled>Start Sorting</button>
+    <button  class="reset-btn" onclick="resetSortingVisualizer()">Reset</button>
+
+
+    <label for="speed">Speed:</label>
+    <input type="range" id="speed" min="50" max="1000" step="50" value="150">
+    <span id="speed-value">150ms</span>
+  </div>
+<br>
+  <div id="algo-info"></div>
+  <div id="array-display"></div>
+  <div id="array-container"></div>
+
+  <script src="/static/js/array/sorting.js"></script>
+</body>
+</html>

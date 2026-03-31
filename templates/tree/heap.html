@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>3D Heap Visualizer</title>
+<link rel="stylesheet" href="/static/css/tree/heap.css">
+</head>
+
+<body>
+
+<div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Heap Visualizer</h1>
+</div>
+  
+<div class="controls">
+  <input type="number" id="value" placeholder="Value">
+  <button onclick="insert()">Insert</button>
+  <button onclick="extract()">Extract Root</button>
+<button onclick="resetHeap()">Reset</button>
+
+  <select id="type" onchange="handleTypeChange()" style="background-color: white;">
+    <option value="" disabled selected hidden>Select Algorithm</option>
+    <option value="max">Max Heap</option>
+    <option value="min">Min Heap</option>
+  </select>
+
+  <span class="speed">
+    Speed:
+    <input type="range" min="200" max="1500" value="700" id="speed">
+  </span>
+</div>
+
+  <svg id="heap">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10"
+        refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#00ffff"/>
+      </marker>
+    </defs>
+  </svg>
+<div class="explain-box" id="explain">
+  <p class="explain">Step-by-step explanation will appear here.</p>
+</div>
+
+<script src="/static/js/tree/heap.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Binary Search Tree</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      
+    }
+
+    #home-button, #visualize-button {
+      color: white;
+      font-weight: bold;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #home-button { background-color: #ff5050; }
+    #visualize-button { background-color: #00bfff; }
+
+    #home-button:hover { background-color: #ff1a1a; }
+    #visualize-button:hover { background-color: #009acd; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-size: 1.5rem;
+      margin-top: 40px;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      text-align: justify;
+      margin: 15px 0;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    img {
+      display: block;
+      margin: 25px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .pseudocode {
+      background-color: #1a1a1a;
+      border-left: 4px solid #00ffff;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      color: lightblue;
+      white-space: pre-wrap;
+      border-radius: 8px;
+    }
+
+    .comparison-box {
+      margin: 40px auto;
+      max-width: 1000px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    th, td {
+      border: 1px solid #00ffff;
+      padding: 14px;
+      text-align: center;
+    }
+
+    th {
+      color: #00ffff;
+      background-color: #0d1117;
+    }
+    .comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <button id="home-button" onclick="goHome()">Home</button>
+  <button id="visualize-button" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Binary Search Tree (BST)</h1>
+  <p class="subtitle">A hierarchical data structure for fast searching, insertion, and deletion</p>
+
+  <h2>Introduction</h2>
+  <ol>
+    <li>It is called a binary tree because each tree node has a maximum of two children.</li>
+    <li>It is called a search tree because it can be used to search for the presence of a number in O(log(n)) time.</li>
+  </ol>
+  <p>The properties that separate a binary search tree from a regular binary tree is</p>
+  <ul>
+    <li>All nodes of left subtree are less than the root node</li>
+    <li>All nodes of right subtree are more than the root node</li>
+    <li>Both subtrees of each node are also BSTs i.e. they have the above two properties</li>
+  </ul>
+
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-vs-not-bst.png" alt="BST Example">
+  <p>The binary tree on the right isn't a binary search tree because the right subtree of the node "3" contains a value smaller than it.</p>
+
+  <h2>Why Binary Search Trees are Important</h2>
+  <ul>
+    <li>Efficient searching compared to arrays</li>
+    <li>Dynamic insertion and deletion</li>
+    <li>Used in databases and file systems</li>
+    <li>Foundation for balanced trees (AVL, Red-Black)</li>
+  </ul>
+
+  <h2>BST Operations</h2>
+  <p>There are two basic operations that you can perform on a binary search tree:</p>
+
+  <!------------------------------------------------ Searching --------------------------------------->
+
+  <h3>Searching</h3>
+  <p>The algorithm depends on the property of BST that if each left subtree has values below root and each right subtree has values above the root.If the value is below the root, we can say for sure that the value is not in the right subtree; we need to only search in the left subtree and if the value is above the root, we can say for sure that the value is not in the left subtree; we need to only search in the right subtree.</p>
+  
+<div class="pseudocode">
+    If root == NULL 
+    return NULL;
+If number == root->data 
+    return root->data;
+If number < root->data 
+    return search(root->left)
+If number > root->data 
+    return search(root->right)
+  </div>
+  <p>Let us try to visualize this with a diagram.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-search-1.png" alt="BST Search Example">
+  <p style="text-align: center;"> 4 is not found so, traverse through the left subtree of 8</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-search-2.png" alt="BST Search Example">
+  <p style="text-align: center;">4 is not found so, traverse through the right subtree of 3</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-search-3.png" alt="BST Search Example">
+  <p style="text-align: center;">4 is not found so, traverse through the left subtree of 6</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-search-1.png" alt="BST Search Example">
+  <p style="text-align: center;">4 is found</p>
+
+  <!------------------------------------------- Insertion ------------------------------------------------>
+
+  <h3>Insertion</h3>
+  <p>Inserting a value in the correct position is similar to searching because we try to maintain the rule that the left subtree is lesser than root and the right subtree is larger than root.We keep going to either right subtree or left subtree depending on the value and when we reach a point left or right subtree is null, we put the new node there.</p>
+
+  <div class="pseudocode">
+function insert(node, value)
+    if node is NULL
+        return new Node(value)
+    if value < node.data
+        node.left = insert(node.left, value)
+    else
+        node.right = insert(node.right, value)
+    return node
+  </div>
+
+  <p>The algorithm isn't as simple as it looks. Let's try to visualize how we add a number to an existing BST.</p>
+
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-1.png" alt="BST Search Example">
+  <p style="text-align: center;"> 4 < 8 so, transverse through the left child of 8</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-2.png" alt="BST Search Example">
+  <p style="text-align: center;"> 4>3 so, transverse through the right child of 8</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-3.png" alt="BST Search Example">
+  <p style="text-align: center;">4<6 so, transverse through the left child of 6</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-insert-4.png" alt="BST Search Example">
+  <p style="text-align: center;">Insert 4 as a left child of 6</p>
+  <p>We have attached the node but we still have to exit from the function without doing any damage to the rest of the tree. This is where the return node; at the end comes in handy. In the case of NULL, the newly created node is returned and attached to the parent node, otherwise the same node is returned without any change as we go up until we return to the root.This makes sure that as we move back up the tree, the other node connections aren't changed.</p>
+
+<!---------------------------------------------- Deletion -------------------------------------------->
+
+  <h3>Deletion</h3>
+  <p>There are three cases for deleting a node from a binary search tree.</p>
+  <ul>
+    <li>Case I</li>
+    <p>In the first case, the node to be deleted is the leaf node. In such a case, simply delete the node from the tree.</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-1.png" alt="BST Delete Example">
+    <p style="text-align: center;">4 is to be deleted</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-2.png" alt="BST Delete Example">
+    <p style="text-align: center;">Delete the node</p>
+
+    <li>Case II</li>
+    <P>In the second case, the node to be deleted lies has a single child node. In such a case follow the steps below:</P>
+    <ol>
+      <li>Replace that node with its child node.</li>
+      <li>Remove the child node from its original position.</li>
+    </ol>
+  
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-3.png" alt="BST Delete Example">
+  <p style="text-align: center;">6 is to be deleted</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-4.png" alt="BST Delete Example">
+  <p style="text-align: center;">copy the value of its child to the node and delete the child</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-5.png" alt="BST Delete Example">
+  <p style="text-align: center;">Final tree</p>
+
+  <li>Case III</li>
+  <p>In the third case, the node to be deleted has two children. In such a case follow the steps below:</p>
+  <ol>
+    <li>Get the inorder successor of that node.</li>
+    <li>Replace the node with the inorder successor.</li>
+    <li>Remove the inorder successor from its original position.</li>
+  </ol>
+  </ul>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-6.png" alt="BST Delete Example">
+  <p style="text-align: center;">3 is to be deleted</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-6.png" alt="BST Delete Example">
+  <p style="text-align: center;">Find inorder successor of 3 (which is 4)</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/bst-delete-8.png" alt="BST Delete Example">
+  <p style="text-align: center;">Delete the inorder successor</p>
+  <div class="pseudocode">
+function delete(node, key)
+    if node is NULL
+        return node
+    if key < node.data
+        node.left = delete(node.left, key)
+    else if key > node.data
+        node.right = delete(node.right, key)
+    else
+        if node.left is NULL
+            return node.right
+        else if node.right is NULL
+            return node.left
+        successor = minValue(node.right)
+        node.data = successor
+        node.right = delete(node.right, successor)
+    return node
+  </div>
+
+  <h2>Time Complexity</h2>
+
+  <div class="comparison-box">
+    <table>
+      <thead>
+        <tr>
+          <th>Operation</th>
+          <th>Average Case</th>
+          <th>Worst Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Search</td>
+          <td>O(log n)</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>Insert</td>
+          <td>O(log n)</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>Delete</td>
+          <td>O(log n)</td>
+          <td>O(n)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="text-align:center; margin-top: 40px; color: #aaa;">
+    End of Document</p>
+</div>
+
+<script>
+  function goHome() {
+    window.location.href = "/";
+  }
+  function goVisualize() {
+    window.location.href = "/bst";
+  }
+</script>
+
+</body>
+</html>

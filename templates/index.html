@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithm Visualizer</title>
+
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+  <div class="animated-bg" id="animated-bg"></div>
+
+  <div class="header-container">
+    <img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+    <h1 class="main-title">Algorithm Visualizer</h1>
+    <p class="subtitle">
+      Interactive visualizations to understand algorithms step-by-step
+    </p>
+  </div>
+
+  <div class="grid-container">
+
+    <!-- Sorting -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="/static/images/sorting.jpg" class="static-img" alt="Sorting">
+        <img src="https://visualgo.net/img/gif/sorting.gif" class="gif-img" alt="Sorting GIF">
+      </div>
+      <p>Sorting Algorithms</p>
+      <a href="/sorting" class="read-button">Visualize</a>
+      <a href="/read/sort" class="read-button">Read</a>
+    </div>
+
+    <!-- Searching -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="/static/images/searching.jpg" class="static-img" alt="Searching">
+        <img src="https://jf-algo-visual.vercel.app/images/searching.gif" class="gif-img" alt="Searching GIF">
+      </div>
+      <p>Searching Algorithms</p>
+      <a href="/searching" class="read-button">Visualize</a>
+      <a href="/read/search" class="read-button">Read</a>
+    </div>
+
+     <!-- LINKED LIST  -->
+
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="/static/images/linked_list.png" class="static-img" alt="Linked List">
+        <img src="/static/images/list.gif" class="gif-img" alt="Linked List GIF">
+      </div>
+      <p>Linked List</p>
+      <a href="/linkedlist" class="read-button">Visualize</a>
+      <a href="/read/linkedlist" class="read-button">Read</a>
+    </div>
+
+    <!-- TREE ALGORITHMS  -->
+
+    <!-- Tree Traversal -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="https://visualgo.net/img/png/bst.png" class="static-img" alt="Tree Traversal">
+        <img src="https://visualgo.net/img/gif/bst.gif" class="gif-img" alt="Tree Traversal GIF">
+      </div>
+      <p>Tree Traversal</p>
+      <a href="/treetraversal" class="read-button">Visualize</a>
+      <a href="/read/treetraversal" class="read-button">Read</a>
+    </div>
+
+    <!-- Binary Search Tree -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="https://tse4.mm.bing.net/th?id=OIP.BBddRbu-gsxkusbPRE8fzwAAAA" class="static-img" alt="BST">
+        <img src="https://i.pinimg.com/originals/6c/ec/43/6cec43366597fe72f85b8a81f9ecb455.gif" class="gif-img" alt="BST GIF">
+      </div>
+      <p>Binary Search Tree</p>
+      <a href="/bst" class="read-button">Visualize</a>
+      <a href="/read/bst" class="read-button">Read</a>
+    </div>
+
+    <!-- Heap -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="https://visualgo.net/img/png/heap.png" class="static-img" alt="Heap">
+        <img src="https://visualgo.net/img/gif/heap.gif" class="gif-img" alt="Heap GIF">
+      </div>
+      <p>Heap</p>
+      <a href="/heap" class="read-button">Visualize</a>
+      <a href="/read/heap" class="read-button">Read</a>
+    </div>
+
+     <!-- GRAPH ALGORITHMS  -->
+
+    <!-- Graph Traversal -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="/static/images/graphtraversal.jpg" class="static-img" alt="Graph Traversal">
+        <img src="https://visualgo.net/img/gif/dfsbfs.gif" class="gif-img" alt="Graph Traversal GIF">
+      </div>
+      <p>Graph Traversal</p>
+      <a href="/graph/traversal" class="read-button">Visualize</a>
+      <a href="/read/graphtraversal" class="read-button">Read</a>
+    </div>
+
+    <!-- Minimum Spanning Tree -->
+    <div class="algo-card">
+      <div class="gif-hover-box">
+        <img src="/static/images/mst.jpeg" class="static-img" alt="MST">
+        <img src="https://visualgo.net/img/gif/mst.gif" class="gif-img" alt="MST GIF">
+      </div>
+      <p>Minimum Spanning Tree</p>
+      <a href="/graph/mst" class="read-button">Visualize</a>
+      <a href="/read/mst" class="read-button">Read</a>
+    </div>
+
+  </div>
+
+  <script>
+    const bg = document.getElementById("animated-bg");
+
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement("div");
+      particle.classList.add("particle");
+
+      const size = Math.random() * 8 + 3;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+
+      bg.appendChild(particle);
+    }
+  </script>
+
+</body>
+</html>

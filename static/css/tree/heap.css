@@ -1,0 +1,208 @@
+body {
+  margin: 0;
+  background: #0d1117;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  
+}
+
+/* ---------- Header ---------- */
+.header-container {
+  text-align: center;
+  padding: 10px 10px;
+  z-index: 1;
+  position: relative;
+}
+
+#home_button{
+  background-color: transparent;
+  border: none;
+}
+
+.center-logo {
+  width: 60px;
+  top: 10px;
+  padding: 10px;
+  right: 20px;
+  z-index: 2;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+input, select, button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+button, select {
+  background: #00ffff;
+  cursor: pointer;
+  
+}
+
+button:hover, select:hover {
+  background: #00ffff;
+}
+
+.speed {
+  color: #00ffff;
+  font-weight: bold;
+}
+
+.controls button:nth-child(4) {
+  background: rgb(255, 63, 63);
+}
+
+.controls button:nth-child(3) {
+  background: #ffcc00;
+}
+
+/* ---------- Heap Container ---------- */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+  margin:  auto;
+  width: 100%;
+  max-width: 1000px;
+  border: 2px solid #00ffff;
+  padding: 10px;
+  overflow: hidden;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+/* ---------- Heap Edges ---------- */
+.edge {
+  stroke: #00ffff;
+  stroke-width: 2;
+}
+
+/* ---------- Heap Nodes ---------- */
+.node circle {
+  fill: #1f6feb;
+  stroke: #00ffff;
+  stroke-width: 2;
+}
+
+/* Active (current node) */
+.node.active circle {
+  fill: #ff5252;
+}
+
+/* Parent node */
+.node.parent circle {
+  fill: #2196f3;
+}
+
+/* Node text */
+.node text {
+  fill: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ---------- Explanation ---------- */
+#explain {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  color: #ff5050;
+  min-height: 30px;
+}
+
+/* ---------- Top Buttons ---------- */
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+#read-button {
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#read-button { background-color: #00bfff; }
+
+#read-button:hover { background-color: #009acd; }
+
+.focus-heap {
+  margin: 30px auto;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  margin: 10px;
+}
+
+.parent {
+  background: #2196f3;
+}
+
+.current {
+  background: #ffcc33;
+  color: black;
+}
+
+.child {
+  background: #00a86b;
+}
+
+.children {
+  display: flex;
+  gap: 40px;
+}
+
+.connector {
+  width: 2px;
+  height: 30px;
+  background: white;
+}
+
+#heap {
+  width: 100vw;
+  height: calc(100vh - 500px); 
+  display: block;
+}

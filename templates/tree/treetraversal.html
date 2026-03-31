@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Binary Tree Traversal Visualizer</title>
+
+<link rel="stylesheet" href="/static/css/tree/treetraversal.css">
+</head>
+
+<body>
+
+<div>
+<button onclick="goHome()" id="home_button">
+<img src="/static/images/pagerank.png" alt="Logo" class="center-logo">
+</button>
+
+<div class="top-buttons">
+<button id="read-button" onclick="goRead()">Read</button>
+</div>
+</div>
+
+<div class="header-container">
+<h1 class="main-title">Tree Traversal Visualizer</h1>
+</div>
+  
+
+<div class="controls">
+  <input type="number" id="value" placeholder="Insert">
+  <button onclick="insertNode()">Insert</button>
+
+  <button onclick="inorder()">Inorder</button>
+  <button onclick="preorder()">Preorder</button>
+  <button onclick="postorder()">Postorder</button>
+  <button onclick="resetTree()">Reset</button>
+
+  <span class="speed">
+    Speed:
+    <input type="range" min="200" max="1500" value="700" id="speed">
+  </span>
+</div>
+
+<canvas id="treeCanvas"></canvas>
+
+<div id="traversal" class="traversal-output"></div>
+
+<div class="explain-box" id="explain">
+  <p class="explain">Step-by-step explanation will appear here.</p>
+</div>
+
+<script src="/static/js/tree/treetraversal.js"></script>
+
+</body>
+</html>

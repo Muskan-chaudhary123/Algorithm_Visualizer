@@ -1,0 +1,191 @@
+body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background-color: #0d1117;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.3);
+      animation: move 15s linear infinite;
+    }
+
+@keyframes move {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+.content-overlay {
+  position: relative;
+  z-index: 1;
+}
+    .login-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #00ffff;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #00cc00;
+    transform: scale(1.05);
+}
+
+
+    .header-container {
+      text-align: center;
+      padding: 40px 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .center-logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #d1faff;
+    }
+
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 30px 20px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .algo-card {
+      background-color: #1f1f1f;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      width: 270px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .algo-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .algo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .algo-card p {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    .read-button {
+      display: inline-block;
+      background-color: #00ffff;
+      color: black;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-weight: bold;
+      margin: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .read-button:hover {
+      background-color: #00dddd;
+    }
+.gif-hover-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.gif-hover-box img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.static-img,
+.gif-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gif-img {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gif-hover-box:hover .gif-img {
+  opacity: 1;
+}
+
+.gif-hover-box:hover .static-img {
+  opacity: 0;
+}
+.gif-hover-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.gif-hover-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gif-hover-box .gif-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.gif-hover-box:hover .gif-img {
+  display: block;
+}

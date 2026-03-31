@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Single Source Shortest Path</title>
+  <style>
+    body { 
+        background:#0d1117; 
+        color:white; 
+        font-family:'Segoe UI',sans-serif; 
+        margin:0; 
+    }
+    .top-buttons { 
+        position:absolute; 
+        top:10px; 
+        right:20px; 
+        display:flex; 
+        gap:10px; 
+    }
+    #home, #visualize { 
+        color: white;
+        font-weight: bold;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer; 
+    }
+    #home { 
+        background:#ff5050; 
+    } 
+    #visualize { 
+        background:#00bfff; 
+    }
+    #home:hover {
+        background-color: #ff1a1a;
+    } 
+    #visualize:hover {
+        background-color: #009acd;
+    }
+
+    .container { 
+        max-width:900px; 
+        margin:auto; 
+        padding:40px 20px; 
+    }
+    h1 { 
+        color: #00ffff;
+        font-size: 2.5rem;
+        text-align: center;
+        text-shadow: 0 0 8px #00ffff;
+        margin-bottom: 30px;
+
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+    h2 { 
+        color:#00ffff; 
+        font-size: 1.5rem;
+        margin-top:40px; 
+        padding-bottom: 5px;
+    }
+    p { 
+        font-size:1.1rem; 
+        margin: 15px 0;
+        text-align:justify; 
+    }
+    ul, ol {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+    .pseudocode {
+      background:#1a1a1a; 
+      border-left:4px solid #00ffff;
+      padding:15px; 
+      margin:20px 0; 
+      font-family: 'Courier New', monospace;
+      color:lightblue; 
+      white-space: pre-wrap;
+      border-radius:8px;
+    }
+    
+  .comparison-box {
+      margin: 40px auto;
+      max-width: 1000px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+}
+.comparison-box th,td {
+  border: 1px solid #00ffff;
+  padding: 16px 24px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.comparison-box th {
+  background-color: #0d1117;
+  color: #00ffff;
+  font-weight: bold;
+}
+
+.comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+#diff_img {
+    max-width: 80%;
+    height: 100%;
+}
+  </style>
+</head>
+
+<body>
+<div class="top-buttons">
+  <button id="home" onclick="goHome()">Home</button>
+  <button id="visualize" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Single Source Shortest Path</h1>
+  <p class="subtitle">Finding shortest paths from one vertex</p>
+
+  <h2>Introduction</h2>
+  <p>In this algorithm we determine the shortest path of all the nodes in the graph with respect to a single node i.e. we have only one source node in this algorithms.</p>
+
+  <!------------------------------ --------------Dijikstra Algorithm---------------------------------------->
+  <h2>Dijkstra’s Algorithm</h2>
+  <p>Dijkstra's Algorithm works on the basis that any subpath B -> D of the shortest path A -> D between vertices A and D is also the shortest path between vertices B and D.</p>
+  <p>Note: The given graph does not contain any negative edge.</p>
+  <ol>
+    <li>Create a distance array dist[] of size V and initialize all values to infinity (∞) since no paths are known yet.</li>
+    <li>Set the distance of the source vertex to 0 and insert it into the priority queue.</li>
+    <li>While the priority queue is not empty, remove the vertex with the smallest distance value.</li>
+    <li>Check: if the popped distance is greater than the recorded distance for this vertex(dist[u]), it means this vertex has already been processed with a smaller distance, so skip it and continue to the next iteration.</li>
+    <li>For each neighbor v of u, check if the path through u gives a smaller distance than the current dist[v].If it does, update dist[v] = dist[u] + edge weight(d) and push (dist[v], v) into the priority queue.</li>
+    <li>Continue this process until the priority queue becomes empty.</li>
+    <li>Once done, the dist[] array will contain the shortest distance from the source to every vertex in the graph.</li>
+  </ol>
+
+  <p><strong>Example of Dijkstra's algorithm</strong></p>
+
+  <p>It is easier to start with an example and then think about the algorithm.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-1.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Start with a weighted graph</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-2.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Choose a starting vertex and assign infinity path values to all other devices</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-3.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Go to each vertex and update its path length</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-4.png" alt="Dijikstra Example">
+  <p style="text-align: center;">If the path length of the adjacent vertex is lesser than new path length, don't update it</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-5.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Avoid updating path lengths of already visited vertices</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-6.png" alt="Dijikstra Example">
+  <p style="text-align: center;">After each iteration, we pick the unvisited vertex with the least path length. So we choose 5 before 7</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-7.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Notice how the rightmost vertex has its path length updated twice</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dj-8.png" alt="Dijikstra Example">
+  <p style="text-align: center;">Repeat until all the vertices have been visited</p>
+
+  <p><strong>Dijisktra's Pseudocode</strong></p>
+  <div class="pseudocode">
+   function dijkstra(G, S)
+    for each vertex V in G
+        distance[V] <- infinite
+        previous[V] <- NULL
+        If V != S, add V to Priority Queue Q
+    distance[S] <- 0
+	
+    while Q IS NOT EMPTY
+        U <- Extract MIN from Q
+        for each unvisited neighbour V of U
+            tempDistance <- distance[U] + edge_weight(U, V)
+            if tempDistance < distance[V]
+                distance[V] <- tempDistance
+                previous[V] <- U
+    return distance[], previous[]
+
+  </div>
+  
+<!----------------------------------------------------Bellman Ford--------------------------------------->
+  <h2>Bellman-Ford Algorithm</h2>
+  <p>It is similar to Dijkstra's algorithm but it can work with graphs in which edges can have negative weights.</p>
+  <p>Bellman Ford algorithm works by overestimating the length of the path from the starting vertex to all other vertices. Then it iteratively relaxes those estimates by finding new paths that are shorter than the previously overestimated paths.</p>
+
+  <ol>
+    <li>Initialize the distance to the source vertex to 0 and all other vertices to infinity (∞).</li>
+    <li>For each vertex, apply relaxation for all edges. This means that for each edge (u, v) with weight w, if the distance to u plus w is less than the distance to v, update the distance to v.</li>
+    <li>Repeat the relaxation process for a total of |V| - 1 times, where |V| is the number of vertices in the graph. This ensures that the shortest paths are found even in the presence of negative weight edges.</li>
+    <li>After completing the |V| - 1 iterations, perform one more iteration over all edges. If any distance can still be updated, it indicates the presence of a negative-weight cycle in the graph.</li>
+    <li>If no updates occur in this final iteration, the algorithm concludes that the shortest paths have been successfully found.</li>
+  </ol>
+
+    <p><strong>Example of Bellman Ford Algorithm </strong></p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-1.png" alt="Bellman Ford Example">
+    <p style="text-align: center;">Step-1 for Bellman Ford's algorithm</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-2.png" alt="Bellman Ford Example">
+    <p style="text-align: center;">Step-2 for Bellman Ford's algorithm</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-3.png" alt="Bellman Ford Example">
+    <p style="text-align: center;">Step-3 for Bellman Ford's algorithm</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-4.png" alt="Bellman Ford Example">
+    <p style="text-align: center;">Step-4 for Bellman Ford's algorithm</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-5.png" alt="Bellman Ford Example">
+    <P style="text-align: center;">Step-5 for Bellman Ford's algorithm</P>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-algorithm-6.png" alt="Bellman Ford Example">
+    <p style="text-align: center;">Step-6 for Bellman Ford's algorithm</p>
+
+    <p><strong>Bellman-Ford Pseudocode</strong></p>
+  <div class="pseudocode">
+function BellmanFord(G, S)
+    for each vertex V in G
+        distance[V] <- infinite
+        previous[V] <- NULL
+    distance[S] <- 0
+
+    for i from 1 to |V| - 1
+        for each edge (U, V) in G
+            if distance[U] + edge_weight(U, V) < distance[V]
+                distance[V] <- distance[U] + edge_weight(U, V)
+                previous[V] <- U
+
+    for each edge (U, V) in G
+        if distance[U] + edge_weight(U, V) < distance[V]
+            error "Graph contains a negative-weight cycle"
+
+    return distance[], previous[]
+  </div>
+  <h2>Bellman Ford vs Dijkstra</h2>
+  <p>Bellman Ford's algorithm and Dijkstra's algorithm are very similar in structure. While Dijkstra looks only to the immediate neighbors of a vertex, Bellman goes through each edge in every iteration.</p>
+  <img  src="https://cdn.programiz.com/sites/tutorial2program/files/bellman-ford-vs-dijkstra.jpg" alt="Bellman Ford vs Dijikstra" id="diff_img">
+  <br>
+  <h2>Applications</h2>
+  <ul>
+    <li>GPS navigation</li>
+    <li>Network routing</li>
+    <li>AI pathfinding</li>
+    <li>Traffic systems</li>
+  </ul>
+
+    <h2>Complexity Comparison</h2>
+
+<div class="comparison-box">
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Time</th>
+        <th>Space</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dijikstra Algorithm</td>
+        <td>O(ElogV)</td>
+        <td>O(V)</td>
+        
+      </tr>
+      <tr>
+        <td>BellmanFord Algorithm</td>
+        <td>O(VE)</td>
+        <td>O(V)</td>
+        
+        
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+  <p style="text-align:center;color:#aaa;">End Document</p>
+</div>
+
+<script>
+function goHome(){ window.location.href="/"; }
+function goVisualize(){ window.location.href="/graph/shortestpath"; }
+</script>
+</body>
+</html>

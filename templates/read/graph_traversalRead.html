@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Graph Traversal</title>
+  <style>
+    body { 
+      background:#0d1117; 
+      color:white; 
+      font-family:'Segoe UI',sans-serif; 
+      margin:0; 
+    }
+    .top-buttons { 
+      position:absolute; 
+      top:10px; 
+      right:20px; 
+      display:flex; 
+      gap:10px; 
+    }
+
+    #home, #visualize { 
+      padding:8px 16px; 
+      border-radius:10px; 
+      border:none; 
+      font-weight:bold; 
+      cursor:pointer; 
+      color:white; }
+
+    #home { background:#ff5050; } 
+    #visualize { background:#00bfff; }
+
+    #home:hover {
+        background-color: #ff1a1a;
+    } 
+    #visualize:hover {
+        background-color: #009acd;
+    }
+
+    .container { 
+      max-width:900px; 
+      margin:auto; 
+      padding:40px 20px; 
+    }
+    h1 { 
+        color: #00ffff;
+        font-size: 2.5rem;
+        text-align: center;
+        text-shadow: 0 0 8px #00ffff;
+        margin-bottom: 30px;
+    }
+
+    .subtitle { 
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+    h2 { 
+      color:#00ffff; 
+      font-size: 1.5rem;
+      margin-top:40px; 
+      padding-bottom: 5px;
+    }
+    p { 
+      font-size:1.1rem; 
+      margin: 15px 0;
+      text-align:justify; 
+    }
+    ul, ol {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+    .pseudocode {
+      background:#1a1a1a; 
+      border-left:4px solid #00ffff;
+      padding:15px; 
+      margin:20px 0; 
+      font-family: 'Courier New', monospace;
+      color:lightblue; 
+      white-space: pre-wrap;
+      border-radius:8px;
+    }
+    .comparison-box {
+      margin: 40px auto;
+      max-width: 1000px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+    .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+}
+  .comparison-box th,td {
+    border: 1px solid #00ffff;
+    padding: 16px 24px;
+    text-align: center;
+    min-width: 120px;
+}
+
+.comparison-box th {
+    background-color: #0d1117;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+  </style>
+</head>
+
+<body>
+<div class="top-buttons">
+  <button id="home" onclick="goHome()">Home</button>
+  <button id="visualize" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Graph Traversal</h1>
+  <p class="subtitle">Visiting all vertices systematically</p>
+
+  <h2>Introduction</h2>
+  <p>
+    Graph traversal is the process of visiting all vertices of a graph in a systematic way.The two most common traversal techniques are BFS and DFS.</p>
+
+    <!----------------------------------------------BFS--------------------------------------------------->
+  <h2>Breadth First Search </h2>
+  <p>Traversal means visiting all the nodes of a graph. Breadth First Traversal or Breadth First Search is a recursive algorithm for searching all the vertices of a graph or tree data structure.</p>
+  <p>A standard BFS implementation puts each vertex of the graph into one of two categories:</p>
+  <ol>
+    <li>Visited</li>
+    <li>Not Visited</li>
+  </ol>
+  <p>The purpose of the algorithm is to mark each vertex as visited while avoiding cycles.</p>
+  <p>The algorithm works as follows:</p>
+  <ol>
+    <li>Start by putting any one of the graph's vertices at the back of a queue.</li>
+    <li>Take the front item of the queue and add it to the visited list.</li>
+    <li>Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited list to the back of the queue.</li>
+    <li>Keep repeating steps 2 and 3 until the queue is empty.</li>
+  </ol>
+  <p><strong>BFS example</strong></p>
+  <p>Let's see how the Breadth First Search algorithm works with an example. We use an undirected graph with 5 vertices.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-0.png" alt="BFS Example Graph" />
+  <p style="text-align: center;">Undirected graph with 5 vertices</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-1.png" alt="BFS Step 1" />
+  <p style="text-align: center;">Visit start vertex and add its adjacent vertices to queue</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-2_2.png" alt="BFS Step 2" />
+  <p style="text-align: center;">Visit the first neighbour of start node 0, which is 1</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-3.png" alt="BFS Step 3" />
+  <p style="text-align: center;">Visit 2 which was added to queue earlier to add its neighbours</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-4.png" alt="BFS Step 4" />
+  <p style="text-align: center;">4 remains in the queue</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/graph-bfs-step-5.png" alt="BFS Step 5" />
+  <p style="text-align: center;">Visit last remaining item in the queue to check if it has unvisited neighbors</p>
+
+
+  <div class="pseudocode">
+    create a queue Q 
+    mark v as visited and put v into Q 
+    while Q is non-empty 
+      remove the head u of Q 
+      mark and enqueue all (unvisited) neighbours of u
+  </div>
+
+    <h2>BFS Algorithm Applications</h2>
+  <ul>
+    <li>To build index by search index</li>
+    <li>In Ford-Fulkerson algorithm to find maximum flow in a network</li>
+    <li>Cycle detection in an undirected graph</li>
+    <li>Path finding algorithms</li>
+  </ul>
+  <br>
+
+  <!-----------------------------------------------------DFS---------------------------------------------->
+
+  <h2>Depth First Search</h2>
+  <p>Depth first Search or Depth first traversal is a recursive algorithm for searching all the vertices of a graph or tree data structure. Traversal means visiting all the nodes of a graph.</p>
+  <p>A standard DFS implementation puts each vertex of the graph into one of two categories:</p>
+  <ol>
+    <li>Visited</li>
+    <li>Not Visited</li>
+  </ol>
+  <p>The purpose of the algorithm is to mark each vertex as visited while avoiding cycles.</p>
+  <p>The algorithm works as follows:</p>
+  <ol>
+    <li>Start by putting any one of the graph's vertices on top of a stack.</li>
+    <li>Take the top item of the stack and add it to the visited list.</li>
+    <li>Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited list to the top of the stack.</li>
+    <li>Keep repeating steps 2 and 3 until the stack is empty.</li>
+  </ol>
+
+  <p><strong>BFS example</strong></p>
+  <p>Let's see how the Depth First Search algorithm works with an example. We use an undirected graph with 5 vertices.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-0.png" alt="DFS Example Graph" />
+  <p style="text-align: center;">Undirected graph with 5 vertices</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-1.png" alt="DFS Step 1" />
+  <p style="text-align: center;">Visit the element and put it in the visited list</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-2.png" alt="DFS Step 2" />
+  <p style="text-align: center;">Visit the element at the top of stack</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-3.png" alt="DFS Step 3" />
+  <p style="text-align: center;">Vertex 2 has an unvisited adjacent vertex in 4, so we add that to the top of the stack and visit it.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-4.png" alt="DFS Step 4" />
+  <p style="text-align: center;">Vertex 2 has an unvisited adjacent vertex in 4, so we add that to the top of the stack and visit it.</p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/dfs-graph-step-5.png" alt="DFS Step 5" />
+  <p style="text-align: center;">After we visit the last element 3, it doesn't have any unvisited adjacent nodes, so we have completed the Depth First Traversal of the graph.</p>
+
+
+
+  <div class="pseudocode">
+    DFS(G, u)
+      u.visited = true
+      for each v ∈ G.Adj[u]
+          if v.visited == false
+              DFS(G,v)
+     
+    init() {
+        For each u ∈ G
+            u.visited = false
+        For each u ∈ G
+          DFS(G, u)
+}
+  </div>
+  <h2>DFS Algorithm Applications</h2>
+  <ul>
+    <li>For finding the path</li>
+    <li>To test if the graph is bipartite</li>
+    <li>For finding the strongly connected components of a graph</li>
+    <li>For detecting cycles in a graph</li>
+  </ul>
+  <br>
+  
+
+  <h2>Complexity Comparison</h2>
+
+<div class="comparison-box">
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Time</th>
+        <th>Space</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Breadth First Search</td>
+        <td>O(E + V)</td>
+        <td>O(V)</td>
+        
+      </tr>
+      <tr>
+        <td>Depth First Search</td>
+        <td>O(V+E)</td>
+        <td>O(V)</td>
+        
+        
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+  <p style="text-align:center;color:#aaa;">End Document</p>
+</div>
+
+<script>
+function goHome(){ window.location.href="/"; }
+function goVisualize(){ window.location.href="/graph/traversal"; }
+</script>
+</body>
+</html>

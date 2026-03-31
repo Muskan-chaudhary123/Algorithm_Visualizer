@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Read: Tree Traversal</title>
+  <style>
+    body {
+      background: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    button {
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+
+    #home { background: #ff5050; }
+    #visualize { background: #00bfff; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #d1faff;
+      margin-bottom: 40px;
+      font-size: 1.2rem;
+      margin-top: -20px;
+
+    }
+
+    h2 {
+      color: #00ffff;
+      margin-top: 40px;
+      font-size: 1.5rem;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 15px 0;
+      text-align: justify;
+    }
+
+    ul {
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    img {
+      display: block;
+      margin: 25px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .pseudocode {
+      background: #1a1a1a;
+      border-left: 4px solid #00ffff;
+      padding: 15px;
+      margin: 20px ;
+      font-family: 'Courier New',monospace;
+      color: lightblue;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    
+    .comparison-box {
+  margin: 40px auto;
+  max-width: 1000px;
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  overflow-x: auto;
+  background-color: #1c1c1e;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+    .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .comparison-box th, td {
+      border: 1px solid #00ffff;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .comparison-box th {
+      background-color: #0d1117;
+      color: #00ffff;
+      font-weight: bold;
+    }
+    .comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <button id="home" onclick="goHome()">Home</button>
+  <button id="visualize" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Tree Traversal</h1>
+  <p class="subtitle">Ways to visit all nodes of a tree</p>
+
+  <h2>Introduction</h2>
+  <p>Traversing a tree means visiting every node in the tree. You might, for instance, want to add all the values in the tree or find the largest one. For all these operations, you will need to visit each node of the tree.Linear data structures like arrays, stacks, queues, and linked list have only one way to read the data. But a hierarchical data structure like a tree can be traversed in different ways.</p>
+  <img src="https://www.programiz.com/sites/tutorial2program/files/tree_traversal_tree-traversal.png" alt="Tree Traversal">
+  <p style="text-align: center;">Tree traversal</p>
+  <p>Let's think about how we can read the elements of the tree in the image shown above.</p>
+  <p>Starting from top, Left to right</p>
+  <p>1 -> 12 -> 5 -> 6 -> 9</p>
+  <p>Starting from bottom, Left to right</p>
+  <p>5 -> 6 -> 12 -> 9 -> 1</p>
+  <p>Although this process is somewhat easy, it doesn't respect the hierarchy of the tree, only the depth of the nodes.</p>
+  <p>Instead, we use traversal methods that take into account the basic structure of a tree i.e.</p>
+  <div class="pseudocode">
+      struct node {
+    int data;
+    struct node* left;
+    struct node* right;
+    }
+  </div>
+  <p>The struct node pointed to by left and right might have other left and right children so we should think of them as sub-trees instead of sub-nodes.</p>
+  <p>According to this structure, every tree is a combination of</p>
+  <ol>
+    <li>A node carrying data</li>
+    <li>Two subtrees</li>
+  </ol>
+  <img src="https://www.programiz.com/sites/tutorial2program/files/tree_traversal_sub-tree-concept.png">
+  <p style="text-align: center;">Left and Right Subtree</p>
+  <p>Remember that our goal is to visit each node, so we need to visit all the nodes in the subtree, visit the root node and visit all the nodes in the right subtree as well.</p>
+  <br>
+  <h2>Types of Tree Traversal</h2>
+
+  <h3>Inorder Traversal</h3>
+  <ol>
+    <li>First, visit all the nodes in the left subtree</li>
+    <li>Then the root node</li>
+    <li>Visit all the nodes in the right subtree</li>
+  </ol>
+
+  <div class="pseudocode">
+Inorder(node):
+    if node != NULL:
+        Inorder(node.left)
+        visit(node)
+        Inorder(node.right)
+  </div>
+
+  <h3>Preorder Traversal</h3>
+  <ol>
+    <li>Visit root node</li>
+    <li>Visit all the nodes in the left subtree</li>
+    <li>Visit all the nodes in the right subtree</li>
+  </ol>
+
+  <div class="pseudocode">
+  Preorder(node):
+    if node != NULL:
+        visit(node)
+        Preorder(node.left)
+        Preorder(node.right)
+  </div>
+
+  <h3>Postorder Traversal</h3>
+  <ol>
+    <li>Visit all the nodes in the left subtree</li>
+    <li>Visit all the nodes in the right subtree</li>
+    <li>Visit root node</li>
+  </ol>
+  <div class="pseudocode">
+Postorder(node):
+    if node != NULL:
+        Postorder(node.left)
+        Postorder(node.right)
+        visit(node)
+  </div>
+
+
+  <h2>Time Complexity</h2>
+  <div class="comparison-box">
+      <table>
+        <tr>
+          <th>Traversal</th>
+          <th>Time Complexity</th>
+        </tr>
+        <tr>
+          <td>Inorder</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>Preorder</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>Postorder</td>
+          <td>O(n)</td>
+        </tr>
+      </table>
+    </div>
+
+  <p style="text-align:center; margin-top:40px; color:#aaa;">
+    End of Document
+  </p>
+</div>
+
+<script>
+function goHome(){ window.location.href = "/"; }
+function goVisualize(){ window.location.href = "/treetraversal"; }
+</script>
+
+</body>
+</html>

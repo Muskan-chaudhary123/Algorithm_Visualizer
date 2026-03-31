@@ -1,0 +1,138 @@
+body {
+  background: #0d1117;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header-container {
+  text-align: center;
+  padding: 10px 10px;
+  z-index: 1;
+  position: relative;
+}
+#home_button{
+  background-color: transparent;
+  border: none;
+}
+.center-logo {
+  width: 60px;
+  top: 10px;
+  padding: 10px;
+  right: 20px;
+  z-index: 2;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  
+}
+
+
+.reset-btn {
+  background: #ff5252;
+  color: white;
+  font-weight: bold;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.reset-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 82, 82, 0.6);
+}
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px;
+}
+
+input, button, select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+#array-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  height: 30vh;
+  width: 90vw;
+  margin: 20px auto;
+  overflow-x: auto;
+  border: 2px solid white;
+  padding: 10px;
+}
+
+.bar {
+  width: 40px;
+  height: 80px;             
+  margin: 0 8px;
+  background-color: #aee4f3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  
+  color: black;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+#search-info, #comparison-count {
+  font-size: 16px;
+  margin: 10px 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .bar {
+    width: 20px;
+    margin: 0 1px;
+    font-size: 12px;
+  }
+
+  input, button, select {
+    font-size: 14px;
+  }
+}
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+#read-button {
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#read-button { background-color: #00bfff; }
+
+#read-button:hover { background-color: #009acd; }

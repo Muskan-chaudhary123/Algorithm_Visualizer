@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Linked List</title>
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    #home-button, #read-button {
+      color: white;
+      font-weight: bold;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #home-button { background-color: #ff5050; }
+    #read-button { background-color: #00bfff; }
+
+    #home-button:hover { background-color: #ff1a1a; }
+    #read-button:hover { background-color: #009acd; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #d1faff;
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #00ffff;
+      font-size: 1.5rem;
+      margin-top: 40px;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      text-align: justify;
+      margin: 15px 0;
+    }
+
+    ul, ol {
+      padding-left: 25px;
+    }
+
+    li {
+      margin: 8px 0;
+      /* margin: 15px 0; */
+    }
+
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 60%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .pseudocode {
+      background-color: #1a1a1a;
+      border-left: 4px solid #00ffff;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      color: lightblue;
+      white-space: pre-wrap;
+      border-radius: 8px;
+    }
+
+    .comparison-box {
+      margin: 40px auto;
+      max-width: 800px;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow-x: auto;
+      background-color: #1c1c1e;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    table {
+      /* width: 100%;
+      border-collapse: collapse;
+      text-align: center; */
+      .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    }
+
+    th, td {
+      border: 1px solid #00ffff;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 340px;
+    }
+
+    th {
+      background-color: #0d1117;
+      color: #00ffff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <button id="home-button" onclick="goHome()">Home</button>
+  <button id="read-button" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+
+  <h1>Linked List</h1>
+  <p class="subtitle">A dynamic data structure with efficient insertions and deletions.</p>
+
+  <!-- INTRO -->
+  <h2>Introduction</h2>
+  <p>
+    A Linked List is a linear data structure where elements are stored in nodes.
+    Each node contains two parts: data and a reference (pointer) to the next node.
+    Unlike arrays, linked lists do not store elements in contiguous memory locations.
+  </p>
+
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/linked-list-concept.png" alt="Linked List Structure">
+
+  <h2>Types of Linked List</h2>
+  <p>Following are the various types of linked list.</p>
+  <ul>
+    <li>Singly Linked List</li>
+    <p>Singly linked lists contain two "buckets" in one node; one bucket holds the data and the other bucket holds the address of the next node of the list. Traversals can be done in one direction only as there is only a single link between two nodes of the same list.</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/linked-list-concept_0.png" alt="Singly Linked List">
+    <li>Doubly Linked List</li>
+    <p>Doubly Linked Lists contain three "buckets" in one node; one bucket holds the data and the other buckets hold the addresses of the previous and next nodes in the list. The list is traversed twice as the nodes in the list are connected to each other from both sides.</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/doubly-linked-list-concept.png" alt="Doubly Linked List">
+    <li>Circular Linked List</li>
+    <p>Circular linked lists can exist in both singly linked list and doubly linked list.Since the last node and the first node of the circular linked list are connected, the traversal in this linked list will go on forever until it is broken.</p>
+    <img src="https://cdn.programiz.com/sites/tutorial2program/files/circular-linked-list.png" alt="Circular Linked List">
+  </ul>
+  <h2>Traversal</h2>
+  <p>Displaying the contents of a linked list is very simple. We keep moving the temp node to the next one and display its contents.</p>
+  <ol>
+    <li>Initialize a temporary node (temp) to point to the head of the linked list.</li>
+    <li>While temp is not NULL, do the following:</li>
+    <ul>
+        <li>Print the data of the current node (temp).</li>
+        <li>Move temp to the next node in the list (temp = temp->next).</li>
+    </ul>
+  </ol>
+    <div class="pseudocode">
+        struct node *temp = head;  
+        while (temp != NULL) {  
+            printf("%d ", temp->data);  
+            temp = temp->next;  
+        }
+    </div>
+  <!-- INSERTION -->
+  <h2>Insertion </h2>
+  <p>adds a new element to the linked list</p>
+  <h3>Insert at Beginning</h3>
+  <ol>
+    <li>Allocate memory for new node</li>
+    <li>Store data</li>
+    <li>Change next of new node to point to head</li>
+    <li>Change head to point to recently created node</li>
+  </ol>
+
+  <div class="pseudocode">
+    struct node *newNode;
+    newNode = malloc(sizeof(struct node));
+    newNode->data = 4;
+    newNode->next = head;
+    head = newNode;
+  </div>
+
+  <h3>Insert at End</h3>
+  <ol>
+    <li>Allocate memory for new node</li>
+    <li>Store data</li>
+    <li>Traverse to last node</li>
+    <li>Change next of last node to recently created node</li>
+  </ol>
+
+  <div class="pseudocode">
+    struct node *newNode;
+    newNode = malloc(sizeof(struct node));
+    newNode->data = 4;
+    newNode->next = NULL;
+
+    struct node *temp = head;
+    while(temp->next != NULL){
+    temp = temp->next;
+    }
+
+    temp->next = newNode;
+  </div>
+
+  <h3>Insert at Given Position</h3>
+  <ol>
+    <li>Allocate memory for new node</li>
+    <li>Store data</li> 
+    <li>Traverse to position - 1</li>
+    <li>Adjust pointers</li>
+  </ol>
+
+  <div class="pseudocode">
+    temp = head  
+    for i = 1 to pos-1  
+    temp = temp.next  
+    newNode.next = temp.next  
+    temp.next = newNode
+  </div>
+
+  <!-- DELETION -->
+  <h2>Deletion</h2>
+  <p>removes the existing elements</p>
+  <h3>Delete from Beginning</h3>
+  <ol>
+    <li>Store head node in a temporary variable</li>
+    <li>Change head to point to next node</li>
+    <li>Free memory of temporary variable</li>
+  </ol>
+  <div class="pseudocode">
+    head = head.next
+  </div>
+
+  <h3>Delete from End</h3>
+  <ol>
+    <li>Traverse to second last node</li>
+    <li>Change next of second last node to NULL</li>
+    <li>Free memory of last node</li>
+  </ol>
+  <div class="pseudocode">
+    temp = head  
+    while temp.next.next != NULL  
+        temp = temp.next  
+    temp.next = NULL
+  </div>
+
+  <h3>Delete from Given Position</h3>
+  <ol>
+    <li>Traverse to position - 1</li>
+    <li>Change next of position - 1 node to point to position + 1 node</li>
+    <li>Free memory of node at given position</li>
+  </ol>
+  <div class="pseudocode">
+    temp = head  
+    for i = 1 to pos-1  
+    temp = temp.next  
+    temp.next = temp.next.next
+  </div>
+
+  <!-- REVERSE -->
+  <h2>Reverse a Linked List</h2>
+  <p>
+    Reversing a linked list means reversing the direction of pointers so the list is traversed from last node to first.</p>
+    <ol>
+        <li>Initialize three pointers: prev as NULL, curr as head, and next as NULL</li>
+        <li>Iterate through the linked list</li>
+        <li>In each iteration, store the next node, reverse the current node's pointer, and move the pointers one position ahead</li>   
+        <li>Finally, update head to point to prev</li>
+    </ol>
+  <div class="pseudocode">
+    prev = NULL  
+    curr = head  
+    while curr != NULL  
+    next = curr.next  
+    curr.next = prev  
+    prev = curr  
+    curr = next  
+    head = prev
+  </div>
+
+  <!-- COMPLEXITY -->
+  <h2>Time Complexity Comparison</h2>
+
+  <div class="comparison-box">
+    <table>
+      <tr>
+        <th>Operation</th>
+        <th>Time Complexity</th>
+      </tr>
+      <tr>
+        <td>Insertion (Beginning)</td>
+        <td>O(1)</td>
+      </tr>
+      <tr>
+        <td>Insertion (End)</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Deletion</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Traversal</td>
+        <td>O(n)</td>
+      </tr>
+      <tr>
+        <td>Reverse</td>
+        <td>O(n)</td>
+      </tr>
+    </table>
+  </div>
+
+  <p style="text-align:center; margin-top: 50px; color: #aaa;">
+    End of Document
+  </p>
+
+</div>
+
+<script>
+  function goHome() {
+    window.location.href = "/";
+  }
+
+  function goVisualize() {
+    window.location.href = "/linkedlist";
+  }
+</script>
+
+</body>
+</html>

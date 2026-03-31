@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read: Heap Data Structure</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 8px 16px;
+      border-radius: 10px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+
+    #home { background: #ff5050; }
+    #visualize { background: #00bfff; }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      text-align: center;
+      color: #d1faff;
+      margin-bottom: 40px;
+      margin-top: -20px;
+    }
+
+    h2 {
+      color: #00ffff;
+      margin-top: 40px;
+      font-size: 1.5rem;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 15px 0;
+      text-align: justify;
+    }
+
+    ul ol{
+      padding-left: 25px;
+      margin: 15px 0;
+    }
+
+    img {
+      display: block;
+      margin: 25px auto;
+      max-width: 50%;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+    }
+
+    .pseudocode {
+      background: #1a1a1a;
+      border-left: 4px solid #00ffff;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      color: lightblue;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+    .comparison-box {
+  margin: 40px auto;
+  max-width: 1000px;
+  border: 2px solid #00ffff;
+  border-radius: 12px;
+  overflow-x: auto;
+  background-color: #1c1c1e;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+    .comparison-box table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .comparison-box th, td {
+      border: 1px solid #00ffff;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .comparison-box th {
+      background-color: #0d1117;
+      color: #00ffff;
+      font-weight: bold;
+    }
+    .comparison-box tr:nth-child(even) {
+  background-color: #2c2f33;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="top-buttons">
+  <button id="home" onclick="goHome()">Home</button>
+  <button id="visualize" onclick="goVisualize()">Visualize</button>
+</div>
+
+<div class="container">
+  <h1>Heap Data Structure</h1>
+  <p class="subtitle">Complete Binary Tree used for Priority Queues</p>
+
+  <h2>Introduction</h2>
+  <p>Heap data structure is a complete binary tree that satisfies the heap property, where any given node is</p>
+  <ol>
+    <li>always greater than its child node/s and the key of the root node is the largest among all other nodes. This property is also called max heap property.</li>
+    <li>always smaller than the child node/s and the key of the root node is the smallest among all other nodes. This property is also called min heap property.</li>
+  </ol>
+
+  <h2>Types of Heap</h2>
+  <ul>
+    <li> <strong>Max Heap</strong></li>
+    <p>Max heap, is a binary heap where the value of each node is greater than or equal to the values of its children. Max heaps are valuable when the objective is to efficiently find and extract the maximum element from a collection.</p>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/maxheap_1.png">
+
+    <li><strong>Min Heap</strong></li>
+    <p>Min heap is a specific instance of a binary heap where the value of each node is less than or equal to the values of its children. Min heaps are particularly useful when the goal is to efficiently find and extract the minimum element from a collection.</p>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/minheap_0.png">
+  </ul>
+
+
+  <h2>Heap Operations</h2>
+  <p>Some of the important operations performed on a heap are described below along with their algorithms.</p>
+
+  <!------------------------------------------------ Heapify---------------------------------------- -->
+
+  <h3>Heapify</h3>
+  <p>Heapify is the process of creating a heap data structure from a binary tree. It is used to create a Min-Heap or a Max-Heap.</p>
+
+  <ol>
+    <li>Let the input array be</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/array_1.png">
+    <p style="text-align: center;">Initial Array</p>
+
+    <li>Create a complete binary tree from the array</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/completebt-1_0.png">
+    <p style="text-align: center;">Complete Binary Tree</p>
+
+    <li>Start from the first index of non-leaf node whose index is given by n/2 - 1.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/start_1.png">
+    <p style="text-align: center;">Start from first non-leaf node</p>
+
+    <li>Set current element i as largest.</li>
+    <li>The index of left child is given by 2i + 1 and the right child is given by 2i + 2.
+      <ol>
+        <li>If leftChild is greater than currentElement (i.e. element at ith index), set leftChildIndex as largest.</li>
+        <li>If rightChild is greater than element in largest, set rightChildIndex as largest.</li>
+      </ol>
+    </li>
+    <li>Swap largest with currentElement</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/swap_1.png">
+    <p style="text-align: center;">Swap if necessary</p>
+
+    <li>Repeat steps 3-7 until the subtrees are also heapified.</li>
+  </ol>
+
+  <div class="pseudocode">
+    Heapify(array, size, i)
+    set i as largest
+    leftChild = 2i + 1
+    rightChild = 2i + 2
+  
+    if leftChild > array[largest]
+      set leftChildIndex as largest
+    if rightChild > array[largest]
+      set rightChildIndex as largest
+
+    swap array[i] and array[largest]
+
+  </div>
+<br>
+  <!-- ---------------------------------------------Insertion ------------------------------------------->
+
+  <h3>Insert Element into Heap</h3>
+  <ol>
+    <li>Insert the new element at the end of the tree.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/insert-heap-1.png">
+    <p style="text-align: center;">Insert at the end</p>
+
+    <li>Heapify the tree.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/insert-heap-2.png">
+    <p style="text-align: center;">Heapify the array</p>
+  </ol>
+
+  <div class="pseudocode">
+        If there is no node, 
+            create a newNode.
+        else (a node is already present)
+          insert the newNode at the end (last node from left to right.)
+  
+        heapify the array
+
+  </div>
+  <p>For Min Heap, the above algorithm is modified so that parentNode is always smaller than newNode.</p>
+  <br>
+
+<!-------------------------------------------------------- Deletion ------------------------------------>
+  <h3>Delete Element into Heap</h3>
+  <p>Algorithm for deletion in Max Heap</p>
+  <ol>
+    <li>Select the element to be deleted.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/delete-1_1.png">
+    <p style="text-align: center;">Select the element to be deleted</p>
+
+    <li>Swap it with the last element.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/delete-2_1.png">
+    <p style="text-align: center;">Swap with the last element</p>
+
+    <li>Remove the last element.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/delete-3_0.png">
+    <p style="text-align: center;">Remove the last element</p>
+
+    <li>Heapify the tree.</li>
+    <img src="https://www.programiz.com/sites/tutorial2program/files/delete-4_0.png">
+    <p style="text-align: center;">Heapify the array</p>
+  </ol>
+  <div class="pseudocode">
+        If nodeToBeDeleted is the leafNode
+          remove the node
+        Else swap nodeToBeDeleted with the lastLeafNode
+          remove noteToBeDeleted
+   
+        heapify the array
+
+  </div>
+  <p>For Min Heap, above algorithm is modified so that both childNodes are greater smaller than currentNode.</p>
+<br>
+  <!--------------------------------------------Peak ---------------------------------------------------->
+  <h3>Peek (Find max/min)</h3>
+  <p>Peek operation returns the maximum element from Max Heap or minimum element from Min Heap without deleting the node.</p>
+  <p>For both Max heap and Min Heap</p>
+  <div class="pseudocode">
+        If heap is not empty
+          return rootNode
+        Else
+          return null
+  </div>
+<br>
+  <!--------------------------------------------Extract Max/Min ------------------------------------------>
+  <h3>Extract-Max/Min</h3>
+  <p>Extract-Max returns the node with maximum value after removing it from a Max Heap whereas Extract-Min returns the node with minimum after removing it from Min Heap.</p>
+
+  <h2>Applications of Heap</h2>
+  <ul>
+    <li>Priority Queue</li>
+    <li>Heap Sort</li>
+    <li>Dijkstra’s Algorithm</li>
+    <li>Scheduling systems</li>
+  </ul>
+
+  <h2>Time Complexity</h2>
+    <div class="comparison-box">
+      <table>
+        <tr>
+          <th>Operation</th>
+          <th>Time</th>
+        </tr>
+        <tr>
+          <td>Insert</td>
+          <td>O(log n)</td>
+        </tr>
+        <tr>
+          <td>Delete</td>
+          <td>O(log n)</td>
+        </tr>
+        <tr>
+          <td>Get Max/Min</td>
+          <td>O(1)</td>
+        </tr>
+      </table>
+    </div>
+  <p style="text-align:center; margin-top:40px; color:#aaa;">
+    End Document
+  </p>
+</div>
+
+<script>
+function goHome(){ window.location.href = "/"; }
+function goVisualize(){ window.location.href = "/heap"; }
+</script>
+
+</body>
+</html>

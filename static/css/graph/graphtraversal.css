@@ -1,0 +1,145 @@
+body {
+  background: #0d1117;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ .header-container {
+  text-align: center;
+      padding: 10px 10px;
+      z-index: 1;
+      position: relative;
+}
+
+#home_button{
+  background-color: transparent;
+  border: none;
+}
+
+.center-logo {
+  width: 60px;
+  top: 10px;
+  padding: 10px;
+  right: 20px;
+  z-index: 2;
+}
+
+.main-title {
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10px 0 15px;
+  display: flex;
+  gap: 10px;
+}
+
+#controls select,
+#controls button {
+  padding: 8px 14px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  
+}
+
+#controls select {
+  background: #2c2f33;
+  color: white;
+}
+
+#controls button {
+  background: #00ffff;
+  color: black;
+  cursor: pointer;
+}
+
+#controls button:hover {
+  background: #00dddd;
+}
+
+.canvas-container {
+  height: 600px;
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+canvas {
+  background: #161b22;
+  border-radius: 10px;
+}
+
+
+#path-result {
+  margin: 10px auto;
+  width: 80%;
+  color: #ff5050;
+  text-align: center;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+#read-button {
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#read-button { background-color: #00bfff; }
+
+#read-button:hover { background-color: #009acd; }
+
+.info-box {
+  width: 80%;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+  background: #161b22;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#controls button {
+  transition: 0.2s ease;
+}
+
+#controls button:active {
+  transform: scale(0.95);
+}
+
+#controls button:nth-child(3) {
+  background: #ffcc00;
+}
+
+#controls button:nth-child(4) {
+  background: rgb(255, 63, 63);
+}
+
+
+#controls button:nth-child(3):hover {
+  background: #e6b800;
+}
